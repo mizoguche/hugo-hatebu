@@ -1,0 +1,9 @@
+package: github.com/mizoguche/hugo-hatebu
+import:
+- package: github.com/mizoguche/go-hatebu
+  subpackages:
+  - hatebu
+testImport:
+- package: github.com/stretchr/testify
+  subpackages:
+  - assert
