@@ -1,14 +1,14 @@
-package main
+package feed
 
 import (
 	"encoding/xml"
-	"fmt"
 	"time"
 )
 
 type Item struct {
 	Title      string `xml:"title"`
 	PubDate    string `xml:"pubDate"`
+	Link       string `xml:"link"`
 	Categories []string `xml:"category"`
 }
 
@@ -38,13 +38,11 @@ func (r *RSS) Latest() Item {
 	for i, item := range r.Channel.Items {
 		if i == 0 {
 			latest = item
-			fmt.Printf("init: %v\n", latest.Title)
 			continue
 		}
 
 		if item.Date().After(latest.Date()) {
 			latest = item
-			fmt.Printf("latest: %v\n", latest.Title)
 		}
 	}
 	return latest
