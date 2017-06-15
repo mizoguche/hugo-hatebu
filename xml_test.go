@@ -25,6 +25,13 @@ func TestItem_Date(t *testing.T) {
 	as.Equal(time.Date(2017, 4, 10, 0, 0, 0, 0, time.FixedZone("", 3600)), d)
 }
 
+func TestRSS_Latest(t *testing.T) {
+	as := assert.New(t)
+	rss, err := Parse(testXml)
+	as.Nil(err)
+	as.Equal("Pull RequstのレビューにLGTM画像はっつけるChrome拡張つくった", rss.Latest().Title)
+}
+
 const testXml = `
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
