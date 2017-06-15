@@ -44,9 +44,14 @@ func run() int {
 		category = fmt.Sprintf("%s[%s]", category, c)
 	}
 
+	comment := ""
+	if os.Getenv("HATENA_COMMENT") != "" {
+		comment = os.Getenv("HATENA_COMMENT")
+	}
+
 	req := hatebu.AddRequest{
 		URL:         latest.Link,
-		Comment:     category + "ブログ書いた",
+		Comment:     category + comment,
 		PostTwitter: true,
 	}
 
